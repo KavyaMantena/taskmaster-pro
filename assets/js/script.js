@@ -67,24 +67,18 @@ $(".card .list-group").sortable({
     var tempArr = [];
 
     $(this).children().each(function () {
-
-      var text = $(this)
-        .find("P")
-        .text()
-        .trim();
-
-      var date = $(this)
-        .find("span")
-        .text()
-        .trim();
-
       tempArr.push({
-        text: text,
-        date: date
+        text: $(this)
+          .find("p")
+          .text()
+          .trim(),
+        date: $(this)
+          .find("span")
+          .text()
+          .trim()
       });
-
-      console.log(tempArr);
     });
+
     var arrName = $(this)
       .attr("id")
       .replace("list-", "");
