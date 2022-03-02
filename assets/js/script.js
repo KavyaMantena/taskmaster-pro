@@ -45,6 +45,75 @@ var saveTasks = function () {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+
+$(".card .list-group").sortable({
+  connectWith: $(".card .list-group"),
+  scroll: false,
+  tolerance: "pointer",
+  helper: "clone",
+  activate: function (event) {
+    console.log("activate", this);
+  },
+  deactivated: function (event) {
+    console.log("deactivate", this);
+  },
+  over: function (event) {
+    console.log("over", event.target);
+  },
+  out: function (event) {
+    console.log("over", event.target);
+  },
+  update: function (event) {
+    var tempArr = [];
+
+    $(this).children().each(function () {
+
+      var text = $(this)
+        .find("P")
+        .text()
+        .trim();
+
+      var date = $(this)
+        .find("span")
+        .text()
+        .trim();
+
+      tempArr.push({
+        text: text,
+        date: date
+      });
+
+      console.log(tempArr);
+    });
+    var arrName = $(this)
+      .attr("id")
+      .replace("list-", "");
+
+    // update array on tasks object and save
+    tasks[arrName] = tempArr;
+    saveTasks();
+
+  }
+});
+
+$("#trash").droppable({
+  accept: ".card .list-group-item",
+  tolerance: "touch",
+  drop: function (event, ui) {
+    ui.draggable.remove();
+    console.log("drop");
+  },
+  over: function (event, ui) {
+    console.log("over");
+  },
+  out: function (event, ui) {
+    console.log("out");
+  }
+
+});
+
+
+
 $(".list-group").on("click", "p", function () {
   var text = $(this)
     .text()
