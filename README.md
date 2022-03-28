@@ -8,7 +8,7 @@ A website that offers to add task, edit and delete for the purpose of one's sche
 * JavaScript
 
 ## Website
-file:///Users/newtechkn/Desktop/projects/taskmaster-pro/index.html
+https://kavyamantena.github.io/taskmaster-pro/
 
 ## Contribution
 Made with ❤️ by {Kavya Mantena}
